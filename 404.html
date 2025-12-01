@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <link rel="canonical" href="https://your-username.github.io/repo-name/"/>
+    <script>
+        var segmentCount = 0;
+        var l = window.location;
+        l.replace(
+            l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+            l.pathname.split('/').slice(0, 1 + segmentCount).join('/') + '/?p=/' +
+            l.pathname.slice(1).split('/').slice(segmentCount).join('/').replace(/&/g, '~and~') +
+            (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+            l.hash
+        );
+    </script>
+    <meta http-equiv="refresh" content="0; URL='https://your-username.github.io/repo-name/'" />
+</head>
+<body>
+    <h1>Redirecting...</h1>
+    <a href="https://your-username.github.io/repo-name/">Click here if you are not redirected.</a>
+    <script>
+        window.onload = function() {
+            var currentUrl = window.location.href;
+            var index = currentUrl.indexOf("?p=/");
+            if (index > -1) {
+                var path = currentUrl.substring(index + 4);
+                path = path.replace(/~and~/g, '&');
+                window.history.replaceState({}, '', path);
+            }
+        };
+    </script>
+</body>
+</html>
